@@ -1,0 +1,3 @@
+web: gunicorn webapps.wsgi --log-file -
+web: gunicorn socialnetwork:app
+web: python manage.py runserver 0.0.0.0:$PORT --noreload

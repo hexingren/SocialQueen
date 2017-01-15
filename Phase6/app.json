@@ -1,0 +1,8 @@
+{
+  "name": "SocialQueen",
+  "description": "A socialnetwork app.",
+  "image": "heroku/python",
+  "repository": ,
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}

@@ -1,0 +1,23 @@
+{% extends "in_base.html" %}
+
+{% block title %} SocialQueen -- Global {% endblock %}
+
+{% block content %}		    
+<form action ="{% url 'Postmsg' %}" method = 'post'>
+	{{ form.text }}
+	{% for field in form.hidden_fields %}
+		{{ field }}
+	{% endfor %}
+	<br>
+	<button type="submit" value="Post" class="w3-btn w3-teal">Post</button>
+	{% csrf_token %}
+</form><br>
+{% endblock %}
+
+		{% block post %}
+			<img src="{% url 'uploadavater' %}?username={{ post.username }}" class="w3-circle pic" height="75" width="75" alt="{{form.first_name.value}} {{form.last_name.value}}">
+			{{ post.text }} <br>
+			<a href="profile?username={{post.username}}">{{post.username}}</a>
+			{{ post.timeline}} <br>	
+		{% endblock %}
+<br>

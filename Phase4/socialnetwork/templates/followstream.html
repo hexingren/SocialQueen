@@ -1,0 +1,10 @@
+{% extends "stream_base.html" %}
+
+{% block title %} SocialQueen -- Follow {% endblock %}
+
+{% block post %}
+	<img src="{% url 'uploadavater' %}?username={{ post.username }}" class="w3-circle pic" height="75" width="75" alt="{{form.first_name.value}} {{form.last_name.value}}">
+	{{ post.text }} <br>
+	<a href="profile?username={{post.username}}">{{post.username}}</a>
+	{{ post.timeline}} <br>	
+{% endblock %}

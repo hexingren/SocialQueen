@@ -1,0 +1,10 @@
+{% extends "in_base.html" %}
+
+{% block title %} SocialQueen -- Follow {% endblock %}
+
+{% block post %}
+	<img src="{{ post.profile.avater }}" class="w3-circle" height="75" width="75">
+	{{ post.text }} <br>
+	<a href="profile?username={{post.username}}">{{post.username}}</a>
+	{{ post.timeline}} <br>	
+{% endblock %}

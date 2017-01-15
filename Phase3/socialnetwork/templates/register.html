@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<title>SocialQueen -- Sign Up</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+<link rel="stylesheet" href="../static/w3_socialnetwork.css">
+<body>
+
+<header class="w3-container w3-teal">
+	<span class="w3-xlarge">☰</span>
+	<h1>SocialQueen</h1>
+</header>
+
+<div class="w3-container w3-half w3-margin-top">
+
+<form class="w3-container w3-card-4" method="post" action="{% url 'register' %}">
+	<h2 class="w3-text-theme">Sign Up</h2>
+	
+	<table>
+	{% for field in form.visible_fields %}
+	<tr>
+		<td>{{ field.label_tag }}</td>
+		<td>{{ field }}</td>
+		<td class="errmsg">{{field.errors}}</td>
+	</tr>
+	{% endfor %}
+	</table>
+	{% for field in form.hidden_fields %}
+	{{ field }}
+	{% endfor %}
+	{% csrf_token %}	
+	
+<!--
+	<div class="w3-group1">
+		<input class="w3-input1" type="text" placeholder="First name" required>
+		<label class="w3-label">Username</label>
+	</div>
+	<div class="w3-group2">
+		<input class="w3-input1" type="text" placeholder="Last name" required>
+		<label class="w3-label">Username</label>
+	</div>
+	<div class="w3-group">      
+		<input class="w3-input" type="text" placeholder="Username" required>
+		<label class="w3-label">Username</label>
+	</div>
+	<div class="w3-group">      
+		<input class="w3-input" type="password" placeholder="Password" required>
+		<label class="w3-label">Password</label>
+	</div>
+	<div class="w3-group">      
+		<input class="w3-input" type="password" placeholder="Confirm Password" required>
+		<label class="w3-label">Confirm password</label>
+	</div>
+-->
+
+<!--
+	<label class="w3-checkbox">
+		<input type="radio" name="gender" value="male" checked>
+		<span class="w3-checkmark"></span> Male
+	</label><br>
+	<label class="w3-checkbox">
+		<input type="radio" name="gender" value="female">
+		<span class="w3-checkmark"></span> Female
+	</label>
+	<br><br>
+	<label class="w3-checkbox">
+		<input type="checkbox" checked="checked">
+		<span class="w3-checkmark"></span> Stay Logged In
+	</label>
+
+	<br><br>
+-->
+
+	
+	<br>
+	<button class="w3-btn w3-theme" type="submit" value="Register"> Sign up </button>
+	<br><br>
+</form>
+{% for error in form.non_field_errors %}
+<p class="errmsg">
+{{error}}
+</p>
+{% endfor %}
+
+</div>
+
+</body>
+</html>

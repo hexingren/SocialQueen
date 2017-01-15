@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block title %} SocialQueen {% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'w3_socialnetwork.css' %}" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="/static/js/refresh_globalstream_newpostonly.js"></script>
+</head>
+
+<body class="w3-light-grey">
+
+			<div class="w3-topnav w3-large w3-teal">
+			{% block navbar %}
+				<a href="{% url 'globalstream' %}">SocialQueen</a>
+				<a href="profile?username={{user.username}}">Home</a>
+				<a href="{% url 'followstream' %}">Follow</a>
+				<a href="{% url 'logout' %}">Logout</a>
+			{% endblock %}
+			</div>
+			<div class="w3-container w3-center w3-row">
+				<div class="w3-col m7">
+				<div class="w3-row-padding w3-col m12 w3-card-2 w3-round w3-white w3-container w3-padding w3-left-align">
+				{% block content %}{% endblock %}
+				</div>
+				</div>
+			</div>
+</body>
+</html>
