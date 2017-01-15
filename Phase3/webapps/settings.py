@@ -14,6 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))     #              hren PROJECT_ROOT
 
 
 # Quick-start development settings - unsuitable for production
@@ -53,6 +54,8 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'webapps.urls'
 
+#LOGIN_URL = '/home/login/'
+#LOGIN_REDIRECT_URL = '/home/'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = 'globalstream'
 
@@ -118,8 +121,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+MEDIA_ROOT = PROJECT_ROOT + '/../socialnetwork/media/'
+
+MEDIA_URL = '/media/'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+FILE_UPLOAD_MAX_MEMORY_SIZE = 2500000

@@ -52,7 +52,7 @@ table,th,td{border:none}
 .w3-centered tr th,.w3-centered tr td{text-align:center}
 .w3-table td,.w3-table th,.w3-table-all td,.w3-table-all th{padding:6px 8px;display:table-cell;text-align:left;vertical-align:top}
 .w3-table th:first-child,.w3-table td:first-child,.w3-table-all th:first-child,.w3-table-all td:first-child{padding-left:16px}
-.w3-btn{border:none;display:inline-block;outline:0;padding:6px 16px;vertical-align:middle;overflow:hidden;text-decoration:none !important;color:#fff;background-color:#000;text-align:center;transition:.2s ease-out;cursor:pointer;white-space:nowrap}
+.w3-btn{border:none;display:inline-block;outline:0;padding:6px 16px; margin: 3px; vertical-align:middle;overflow:hidden;text-decoration:none !important;color:#fff;background-color:#000;text-align:center;transition:.2s ease-out;cursor:pointer;white-space:nowrap}
 .w3-btn.w3-disabled,.w3-btn-floating.w3-disabled,.w3-btn:disabled,.w3-btn-floating:disabled,.w3-btn-floating-large.w3-disabled,.w3-btn-floating-large:disabled{cursor:not-allowed;opacity:0.3}
 .w3-btn.w3-disabled *,.w3-btn-floating.w3-disabled *,.w3-btn:disabled *,.w3-btn-floating:disabled *{pointer-events:none}
 .w3-btn.w3-disabled:hover,.w3-btn:disabled:hover,.w3-btn-floating.w3-disabled:hover,.w3-btn-floating:disabled:hover,
@@ -115,7 +115,7 @@ input[type=checkbox].w3-check:checked+.w3-validate,input[type=radio].w3-radio:ch
 input[type=checkbox].w3-check:disabled+.w3-validate,input[type=radio].w3-radio:disabled+.w3-validate{color:#aaa}
 .w3-responsive{overflow-x:auto}
 .w3-container:after,.w3-row:after,.w3-row-padding:after,.w3-topnav:after,.w3-clear:after,.w3-btn-group:before,.w3-btn-group:after{content:"";display:table;clear:both}
-.w3-col,.w3-half,.w3-third,.w3-twothird,.w3-quarter{float:left;width:100%}
+.w3-col,.w3-half,.w3-third,.w3-twothird,.w3-quarter{float:left; width:100%; margin: 5px;} // hren
 .w3-col.s1{width:8.33333%}
 .w3-col.s2{width:16.66666%}
 .w3-col.s3{width:24.99999%}
@@ -181,7 +181,7 @@ input[type=checkbox].w3-check:disabled+.w3-validate,input[type=radio].w3-radio:d
 .w3-left-align{text-align:left !important}.w3-right-align{text-align:right !important}
 .w3-justify{text-align:justify !important}
 .w3-center{text-align:center !important}
-.w3-circle{border-radius:50% !important}
+.w3-circle{border-radius:50% margin:3px !important}
 .w3-round-small{border-radius:2px !important}.w3-round,.w3-round-medium{border-radius:4px !important}
 .w3-round-large{border-radius:8px !important}.w3-round-xlarge{border-radius:16px !important}
 .w3-round-xxlarge{border-radius:32px !important}.w3-round-jumbo{border-radius:64px !important}
@@ -222,7 +222,7 @@ input[type=checkbox].w3-check:disabled+.w3-validate,input[type=radio].w3-radio:d
 .w3-leftbar{border-left:6px solid #ccc !important}.w3-rightbar{border-right:6px solid #ccc !important}
 .w3-border-red{border-color:#ff6060 !important}.w3-border-yellow{border-color:#daa520 !important}
 .w3-border-green{border-color:#66aa66 !important}.w3-border-blue{border-color:#1E90FF !important}
-.w3-row-padding,.w3-row-padding>.w3-half,.w3-row-padding>.w3-third,.w3-row-padding>.w3-twothird,.w3-row-padding>.w3-quarter,.w3-row-padding>.w3-col{padding:0 8px}
+.w3-row-padding,.w3-row-padding>.w3-half,.w3-row-padding>.w3-third,.w3-row-padding>.w3-twothird,.w3-row-padding>.w3-quarter,.w3-row-padding>.w3-col{padding:0px 8px}  
 .w3-spin{animation:w3-spin 2s infinite linear;-webkit-animation:w3-spin 2s infinite linear}
 @-webkit-keyframes w3-spin{
 0%{-webkit-transform:rotate(0deg);transform:rotate(0deg)}
@@ -297,3 +297,8 @@ position:relative;-webkit-animation-name:animatebottom;-webkit-animation-duratio
 .errmsg{color:#ff0000}
 .button{font: bold 11px Arial;text-decoration: none;background-color: #EEEEEE;color: #333333;padding: 2px 6px 2px 6px;border-top: 1px solid #CCCCCC;border-right: 1px solid #333333;border-bottom: 1px solid #333333;border-left: 1px solid #CCCCCC;} // fake a button
 .hid{visibility:hidden;}
+.pad{padding: 5px, 5px, 5px, 5px}
+.bio-input{'rows': 6, 'cols': 20}
+.pic{float: left}
+.comment-text {background-color: #ffffff; color: black; word-wrap: break-word; width: 300px; margin-left: 15px; margin-top: 15px;}
+.comment-info {background-color: #ffffff; color: black; word-wrap: break-word; width: 300px; margin-left: 15px; font-size:15px;}

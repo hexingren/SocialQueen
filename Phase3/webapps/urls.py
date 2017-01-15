@@ -19,6 +19,7 @@ from socialnetwork import views
 from socialnetwork import views as private_views
 
 urlpatterns = [
+    #url(r'^home/', include('socialnetwork.urls')),
     url(r'^$', private_views.home),
     url(r'^', include('socialnetwork.urls')),
 ]

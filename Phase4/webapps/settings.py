@@ -11,10 +11,12 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import ConfigParser
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))     #              hren PROJECT_ROOT
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))     #              hren PROJECT_ROOT
 
 
 # Quick-start development settings - unsuitable for production
@@ -80,13 +82,26 @@ WSGI_APPLICATION = 'webapps.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',       # Add 'postgresql_psycopg2','mysql','sqlite3' or 'oracle'.
+        'NAME': 'socialqueen', # Or path to database file if using sqlite3.
+        'USER': 'hexingren', # Not used with sqlite3.   
+        'PASSWORD': '666666', # Not used with sqlite3.
+        'HOST': 'localhost', # Set to empty string for default. Not used with sqlite3.
+        'PORT': '5432', # Set to empty string for default. Not used with sqlite3.
+    }
+}
+
+
 
 
 # Password validation
@@ -122,13 +137,58 @@ USE_L10N = True
 USE_TZ = True
 
 MEDIA_ROOT = PROJECT_ROOT + '/../socialnetwork/media/'
+# MEDIA_ROOT = 'media'
 
 MEDIA_URL = '/media/'
 
+# hren heroku heroku heroku
+
+# Update database configuration with $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+# STATIC_ROOT = '/app/static/'
 STATIC_URL = '/static/'
 
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
+
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+# hren heroku heroku heroku
+
+# Configures Django to merely print emails rather than sending them.
+# Comment out this line to enable real email-sending.
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# To enable real email-sending, you should uncomment and configure the settings below.
+
+config = ConfigParser.ConfigParser()
+config.read('config.ini')
+
+EMAIL_HOST = config.get('Email', 'Host')
+EMAIL_PORT = config.get('Email', 'Port')
+EMAIL_HOST_USER = config.get('Email', 'User')
+EMAIL_HOST_PASSWORD = config.get('Email', 'Password')
+EMAIL_USE_SSL = True
+
+print 'EMAIL_HOST', EMAIL_HOST + ':' + str(EMAIL_PORT)
+print 'EMAIL_HOST_USER', EMAIL_HOST_USER
+
 FILE_UPLOAD_MAX_MEMORY_SIZE = 2500000
+

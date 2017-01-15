@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
+<head>
 <title>{% block title %} SocialQueen {% endblock %}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
 {% load staticfiles %}
 <link rel="stylesheet" href="{% static 'w3_socialnetwork.css' %}" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="/static/js/refresh_globalstream_newpostonly.js"></script>
+</head>
+
 <body class="w3-light-grey">
 
 			<div class="w3-topnav w3-large w3-teal">
@@ -16,24 +21,56 @@
 			</div>
 			
 		<div class="w3-container w3-center w3-row">
-		
-			<!--
-			<div class="w3-col m3 w3-card-2 w3-round w3-white w3-container">			    
-			{% block user-info %}{% endblock %}
-			</div>
-			-->
-		
 		<div class="w3-col m7">
-		<div class="w3-row-padding w3-col m12 w3-card-2 w3-round w3-white w3-container w3-padding w3-left-align">
 		{% block content %}{% endblock %}
-		</div>
+		
+		<div id="globalstream_newpostonly">
 			{% for post in posts %}
-			<div class="w3-row-padding w3-margin-top w3-col m12 w3-card-2 w3-round w3-white \
+			<!-- hren -->
+			<div id = "postComment" class="w3-row-padding w3-margin-top w3-col m12 w3-card-2 w3-round w3-white \
 			w3-container w3-padding w3-left-align">
+			<table>
 			{% block post %}{% endblock %}
+				{% for cmt in post.comment.all %}
+				<tr>
+				<td>
+				<img src="https://socialqueen3.s3.amazonaws.com/username-{{ cmt.commentPhoto }}" class="w3-circle" height="50" width="50">
+				</td>
+				<td>
+				<div class="comment-text">
+				{{ cmt.text }} <br>
+				</div>
+				<div class="comment-info">
+				<pre><a href="profile?username={{cmt.username}}">{{ cmt.username }}</a> {{ cmt.timeline }}</pre>
+				</div>
+				</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<p hidden id="usernamePost">{{ post.username }}</p>
+			<button onclick="makeComment(this)" name="Comment" value="Comment">Comment</button>
+			<p hidden id="username">{{ username }}</p>
+			<p hidden id="timelinePost">{{post.timeline}}</p>
+			<input type="text" name="Commentinput"></input>
+			<p hidden>{{ pprofile.id }}</p>
 			</div>
 			{% endfor %}
 		</div>
+		
 		</div>
+		</div>
+		<p hidden id="lastupdate">{{ lastupdate }}</p>
 </body>
 </html>
+
+<!-- alt="{{form.first_name.value}} {{form.last_name.value}}" -->
+<!--				{% for comment in post.comment.all %}
+				<div class="w3-row-padding w3-margin-top w3-col m12 w3-card-2 w3-round w3-white \
+				w3-container w3-padding w3-left-align">
+				<img src="{% url 'uploadavater' %}?username={{ comment.username }}" class="w3-circle" height="50" width="50">
+				{{ comment.text }} <br>
+				<a href="profile?username={{comment.username}}">{{comment.username}}</a>
+				{{ comment.timeline}} <br>	
+				</div>
+				{% endfor %}
+-->

@@ -27,10 +27,15 @@ urlpatterns = [
     url(r'^globalstream', private_views.globalstream, name='globalstream'),
     url(r'^profile', private_views.profile, name='profile'),
     url(r'^Postmsg', private_views.Postmsg, name='Postmsg'),
-    #url(r'^home/profile', private_views.profile, name='profile'),
+    #url(r'^globalstream', private_views.Postmsg, name='Postmsg'),
     url(r'^followstream', private_views.followstream, name='followstream'),
     url(r'^editprofile', private_views.EditProfile, name='editprofile'),
+    #url(r'^uploadavater', private_views.UploadAvater, name='uploadavater'),
     url(r'^uploadavater', private_views.UploadAvater, name='uploadavater'),
     url(r'^follow', private_views.follow, name='follow'),
-    url(r'^unfollow', private_views.unfollow, name='unfollow'),    
+    url(r'^unfollow', private_views.unfollow, name='unfollow'),
+    url(r'^get_globalstream_newpostonly_json', 'socialnetwork.views.get_globalstream_newpostonly_json', name='ggnj'),
+    url(r'^save_comment', 'socialnetwork.views.save_comment', name='save_comment'),
+    url(r'^confirm-registration/(?P<username>[a-zA-Z0-9_@\+\-]+)/(?P<token>[a-z0-9\-]+)$', private_views.confirm_registration, name='confirm'),    
 ]
+# checked

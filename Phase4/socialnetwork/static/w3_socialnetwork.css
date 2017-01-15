@@ -300,3 +300,5 @@ position:relative;-webkit-animation-name:animatebottom;-webkit-animation-duratio
 .pad{padding: 5px, 5px, 5px, 5px}
 .bio-input{'rows': 6, 'cols': 20}
 .pic{float: left}
+.comment-text {background-color: #ffffff; color: black; word-wrap: break-word; width: 300px; margin-left: 15px; margin-top: 15px;}
+.comment-info {background-color: #ffffff; color: black; word-wrap: break-word; width: 300px; margin-left: 15px; font-size:15px;}

@@ -1,131 +1,27 @@
-<!DOCTYPE html>
-<html>
-<title>W3.CSS</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+{% extends "in_base.html" %}
 
-<link rel="stylesheet" href="/static/w3_socialnetwork.css">
-<body class="w3-light-grey">
+{% block title %} SocialQueen -- Global {% endblock %}
 
-<div class="w3-topnav w3-large w3-teal">
-	<a href="{% url 'globalstream' %}">SocialQueen</a>
-	<a href="profile?username={{user.username}}">Home</a>
-	<a href="{% url 'logout' %}">Logout</a>
+{% block content %}
+<div class="w3-row-padding w3-col m12 w3-card-2 w3-round w3-white w3-container w3-padding w3-left-align">		    
+<form action ="{% url 'Postmsg' %}" method = 'post'>
+	{{ form.text }}
+	{% for field in form.hidden_fields %}
+		{{ field }}
+	{% endfor %}
+	<br>
+	<button type="submit" value="Post" class="w3-btn w3-teal">Post</button>
+	{% csrf_token %}
+</form><br>
 </div>
+{% endblock %}
+
+		{% block post %}
+			<img src="{% url 'uploadavater' %}?username={{ post.username }}" class="w3-circle" height="75" width="75">
+			{{ post.text }} <br>
+			<a href="profile?username={{post.username}}">{{post.username}}</a>
+			{{ post.timeline}} <br>	
+		{% endblock %}
 <br>
 
-<div class="w3-container w3-center">
-  
-	<div class="w3-row">
-
-		<div class="w3-col m3">
-	 
-<!-- 
-			<div class="w3-card-2 w3-round w3-white">
-		
-				<div class="w3-container">
-			    
-				 <p><img src="img_avatar.jpg" class="w3-circle" height="75" width="75" alt="Avatar"></p>
-				
-				 <p><a href="#">My Name</a></p>
-			    
-				</div>
-			</div>
-			<br>
-		 
-		   
-			
-			
-			<div class="w3-card-2 w3-round w3-white">
-				<div class="w3-container">
-					<p><a href="#">About Me</a></p>
-					<p>
-						<span class="w3-tag w3-small w3-red">News</span>
-						<span class="w3-tag w3-small w3-blue">W3Schools</span>
-						<span class="w3-tag w3-small w3-purple">Labels</span>
-						<span class="w3-tag w3-small w3-green">Games</span>
-						<span class="w3-tag w3-small w3-brown">Friends</span>
-						<span class="w3-tag w3-small w3-yellow">Family</span>
-					</p>
-				</div>
-			</div>
-			<br>
-
-			<div class="w3-container w3-round w3-teal w3-margin-bottom">
-				<span onclick="this.parentElement.style.display='none'" class="w3-closebtn">×</span>
-				<p><strong>Ey!</strong></p>
-				<p>People are looking at your profile. Find out who.</p>
-			</div>
--->
-		</div>
-
-		
-		<div class="w3-col m7">
-		
-			<div class="w3-row-padding">
-				<div class="w3-col m12">
-					<div class="w3-card-2 w3-round w3-white">
-						<div class="w3-container w3-padding w3-left-align">
-							<form action ="{% url 'Postmsg' %}" method = 'post'>
-								{{ form.text }}
-								{% for field in form.hidden_fields %}
-									{{ field }}
-								{% endfor %}
-								<br>
-								<button type="submit" value="Post" class="w3-btn w3-teal">Post</button>
-								{% csrf_token %}
-							</form>
-								
-							
-						<!--
-							<p contenteditable="true">What's Up</p>
-							<button type="button" class="w3-btn w3-teal">Post</button>
-						-->
-						</div>
-					</div>
-				</div>
-			</div>
-			
-
-
-
-			{% for post in posts %}
-			<div class="w3-row-padding w3-margin-top">
-			
-				<div class="w3-row-padding">
-					<div class="w3-col m12">
-						<div class="w3-card-2 w3-round w3-white">
-							<div class="w3-container w3-padding w3-left-align">
-							{{ post.text }} <br>
-							<a href="profile?username={{post.username}}">{{post.username}}</a>
-							{{ post.timeline}} <br>	
-					
-							</div>
-						</div>
-					</div>
-				</div>
-			
-			</div>
-			{% endfor %}
-			
-
-
-		</div>
-	</div>
-</div>
-<br>
-<!--
-{% for error in errors %}
-<p class="errmsg">
-{{error}}
-</p>
-{% endfor %}
-
-<footer class="w3-container w3-teal">
-	<h5>Footer</h5>
-	<p>© 2016 SocialQueen</p>
-</footer>
--->
-
-		 
-</body>
-</html>
+<!-- alt="{{form.first_name.value}} {{form.last_name.value}}" -->

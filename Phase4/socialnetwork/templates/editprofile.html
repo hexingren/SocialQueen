@@ -5,7 +5,8 @@
 {% block content %}
 
 {% if form.picture.value %}
-Photo: <img src="{% url 'uploadavater' %}/?username={{ post.username }}" class="w3-circle" height="75" width="75" alt="{{form.first_name.value}} {{form.last_name.value}}">
+
+Photo: <img src="{{profile.avater}}" class="w3-circle" height="75" width="75" alt="{{form.first_name.value}} {{form.last_name.value}}">
 {% endif %}
 <form enctype="multipart/form-data" method="post" action="{% url "editprofile" %}">
 <table>

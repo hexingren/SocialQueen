@@ -27,4 +27,13 @@ urlpatterns = [
     url(r'^globalstream', private_views.globalstream, name='globalstream'),
     url(r'^profile', private_views.profile, name='profile'),
     url(r'^Postmsg', private_views.Postmsg, name='Postmsg'),
+    #url(r'^globalstream', private_views.Postmsg, name='Postmsg'),
+    url(r'^followstream', private_views.followstream, name='followstream'),
+    url(r'^editprofile', private_views.EditProfile, name='editprofile'),
+    url(r'^uploadavater', private_views.UploadAvater, name='uploadavater'),
+    url(r'^follow', private_views.follow, name='follow'),
+    url(r'^unfollow', private_views.unfollow, name='unfollow'),
+    url(r'^get_globalstream_newpostonly_json', 'socialnetwork.views.get_globalstream_newpostonly_json', name='ggnj'),
+    url(r'^save_comment', 'socialnetwork.views.save_comment', name='save_comment'),    
 ]
+# checked

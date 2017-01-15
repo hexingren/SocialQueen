@@ -2,6 +2,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from socialnetwork.models import *
+from django.core.validators import validate_email, RegexValidator
 
 class RegisterForm(forms.Form):
 	firstname = forms.CharField(
@@ -16,10 +17,17 @@ class RegisterForm(forms.Form):
 		required = False,
 		widget=forms.TextInput(attrs={'class':'w3-group'}),
     )
+	email = forms.CharField(
+		max_length = 50,
+		validators = [validate_email],
+	)
+	
 	username = forms.CharField(
 		max_length = 20,
 		label='Username',
 		widget=forms.TextInput(attrs={'class':'w3-group'}),
+		validators = [RegexValidator(r'^[0-9a-zA-Z]*$',
+					  message='Enter only letters and numbers')]
 	)
 	age = forms.IntegerField(
 		label='Age',
@@ -32,7 +40,6 @@ class RegisterForm(forms.Form):
 		required = False,
 		widget=forms.TextInput(attrs={'class':'bio-input'}),           # add attrs to widget
 	)
-	# email
 	password1 = forms.CharField(
 		max_length = 20,
 		label='Password',
@@ -52,9 +59,8 @@ class RegisterForm(forms.Form):
 			raise forms.ValidationError("Passwords do not match.")
 		
 		userAge = cleaned_data.get('age')
-		if (userAge < 0 or userAge > 150) and (userAge != None): # hren
+		if (userAge < 0 or userAge > 150) and (userAge != None): #if use (userAge != None): NOT NULL constraint failed: socialnetwork_profile.age
 			raise forms.ValidationError("Age is invalid.")
-		#email
 		return cleaned_data
 	
 	def clean_username(self):
@@ -62,13 +68,24 @@ class RegisterForm(forms.Form):
 		if User.objects.filter(username__exact=username):                 # hren
 			raise forms.ValidationError("Username is already taken.")
 		return username
-	
+
 class PostForm(forms.Form):
 	text = forms.CharField(max_length=160, widget=forms.Textarea)
+	
 	
 	def clean(self):
 		cleaned_data = super(PostForm, self).clean()
 		return cleaned_data
+"""
+# mac
+class PostForm(forms.Form):
+	class Meta:
+		model = Post
+		exclude = ('user_profile', 'username', 'timeline', 'comment')
+		widgets = {
+			'text' : forms.CharField(max_length=160)
+		}
+"""
 		
 """
 hren
@@ -80,8 +97,11 @@ class EditProfileForm(forms.ModelForm):
 		exclude = (
 			'username',
 			'follow',
+			'avater',
 		)
-		widgets = {'avater': forms.FileInput()} # prevent the user from deleting avater
+		# widgets = {'avater': forms.FileInput()} # prevent the user from deleting avater
+	avater = forms.FileField(required=False)
+		
 		
 	def __init__(self, *args, **kwargs):
 		super(EditProfileForm, self).__init__(*args, **kwargs)
@@ -90,7 +110,7 @@ class EditProfileForm(forms.ModelForm):
 	def clean(self):
 		cleaned_data = super(EditProfileForm, self).clean()
 		userAge = cleaned_data.get('age')
-		if (userAge < 0 or userAge > 150) and (userAge != Null): # hren
+		if (userAge < 0 or userAge > 150) and (userAge != None): # hren
 			raise forms.ValidationError("Age is invalid.")
 		#email
 		return cleaned_data
