@@ -2,7 +2,7 @@ SocialQueen is a social networking site that makes it easy for you to connect an
 
 You can find a detailed description about the project at www.hexingren.com/socialqueen
 
-Authors:
+Author:
 Hexing Ren
 
 
